@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dhaka Air & Environmental Research Hub</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- ফ্রি ম্যাপ লাইব্রেরি (Leaflet) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Dhaka Air & Research Hub</span>
+    </div>
+    <nav>
+      <a href="#dashboard">Live Map</a>
+      <a href="#initiatives">Initiatives</a>
+      <a href="#articles">Research Articles</a>
+    </nav>
+  </header>
+
+  <main class="container" id="dashboard">
+    <section class="hero">
+      <h1>Dhaka Hyper-Local Air Quality & Action Hub</h1>
+      <p>Starting from Mirpur across major Dhaka zones — real-time PM2.5 monitoring, practical mitigation initiatives, and student research notes.</p>
+
+      <div class="controls">
+        <label for="areaSelect">Select Area:</label>
+        <select id="areaSelect">
+          <option value="mirpur" selected>Mirpur (Default)</option>
+          <option value="uttara">Uttara</option>
+          <option value="dhanmondi">Dhanmondi</option>
+          <option value="gulshan">Gulshan</option>
+          <option value="motijheel">Motijheel</option>
+        </select>
+        <button id="refreshBtn">Refresh Data</button>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card status-card">
+        <div class="card-top">
+          <h2 id="areaTitle">Mirpur, Dhaka</h2>
+          <span id="badge" class="badge">Checking...</span>
+        </div>
+        <div class="metric">
+          <span id="pm25Value">--</span>
+          <small>µg/m³ (PM2.5)</small>
+        </div>
+        <p id="tempText">Temperature: -- °C | Humidity: -- %</p>
+        <p id="healthAdvice" class="advice">Loading air quality status...</p>
+      </div>
+
+      <div class="card map-card">
+        <h2>Dhaka Area Map</h2>
+        <div id="map"></div>
+      </div>
+    </section>
+
+    <!-- বায়ুদূষণ খারাপ হলে করণীয় উদ্যোগ -->
+    <section class="card section-box" id="initiatives">
+      <h2>Initiatives When Air Quality Is Poor</h2>
+      <p class="subtext">Practical steps for individuals, schools/colleges, and local communities in Dhaka:</p>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Personal & Health</h3>
+          <ul>
+            <li>Use well-fitted KN95/N95 masks when PM2.5 is high.</li>
+            <li>Limit outdoor heavy exercise during peak traffic/morning smog.</li>
+            <li>Keep indoor windows closed during severe pollution hours.</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3>Campus & Community</h3>
+          <ul>
+            <li>Run awareness drives on open waste & biomass burning.</li>
+            <li>Encourage native shade trees and indoor air-purifying plants.</li>
+            <li>Log daily local observations to build a clean dataset.</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3>Structural & Policy</h3>
+          <ul>
+            <li>Enforce dust control (water spraying & covering) at construction sites.</li>
+            <li>Promote emission checks for old vehicles and brick kilns.</li>
+            <li>Support transparent, neighborhood-level air monitoring data.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- রিসার্চ আর্টিকেল সেকশন -->
+    <section class="card section-box" id="articles">
+      <div class="article-header">
+        <div>
+          <h2>Research & Observation Articles</h2>
+          <p class="subtext">Authored by project maintainer; guest submissions are reviewed before publishing.</p>
+        </div>
+        <!-- চাইলে এখানে নিজের Google Form-এর লিংক বসাতে পারো -->
+        <a href="#submit-info" class="btn-outline" onclick="toggleSubmitBox()">Submit an Article</a>
+      </div>
+
+      <div id="submitBox" class="submit-box hidden">
+        <h3>Contributor Guidelines (Moderated Publishing)</h3>
+        <p>To keep articles accurate and free of spam, guest drafts are reviewed before going live. Prepare your draft (Title, Area/Topic, Data/Sources, Key Findings) and send it via email or a Google Form link connected here.</p>
+      </div>
+
+      <div id="articleList" class="article-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Environmental data via Open-Meteo API | Built for learning, research & open documentation.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
